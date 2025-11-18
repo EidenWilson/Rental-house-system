@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 
-# --- JINJA FILTERS (UX Polish) ---
+# JINJA FILTERS (UX Polish)
 # Allows you to use {{ date_string | dateformat }} in HTML
 @app.template_filter('dateformat')
 def format_datetime(value, format="%b %d, %Y"):
@@ -19,10 +19,7 @@ def format_datetime(value, format="%b %d, %Y"):
 def format_currency(value):
     # Ensures price always shows two decimal places
     return f"{value:,.2f}"
-
-# -----------------------------------
-
-# --- SECURITY CONFIGURATION ---
+# SECURITY CONFIGURATION 
 app.secret_key = 'keep_this_secret_and_secure'
 
 DB_NAME = 'rental.db'
@@ -32,7 +29,7 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
-# --- ROUTES ---
+# ROUTES
 
 @app.route('/')
 def home():
@@ -57,7 +54,7 @@ def property_page(property_id):
     conn.close()
     return render_template('property.html', prop=prop)
 
-# --- REGISTRATION ROUTE ---
+# REGISTRATION ROUTE 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -87,7 +84,7 @@ def register():
 
     return render_template('register.html')
 
-# --- LOGIN ROUTE ---
+# LOGIN ROUTE
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -109,13 +106,13 @@ def login():
 
     return render_template('login.html')
 
-# --- LOGOUT ROUTE ---
+# LOGOUT ROUTE 
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('home'))
 
-# --- DASHBOARD ROUTE ---
+# DASHBOARD ROUTE 
 @app.route('/dashboard')
 def dashboard():
     if 'user_id' not in session:
@@ -164,7 +161,7 @@ def dashboard():
                            user_type=user_type,
                            total_revenue=total_revenue)
 
-# --- NEW: BOOKING LOGIC ---
+# BOOKING LOGIC 
 @app.route('/book/<int:property_id>', methods=['POST'])
 def book_property(property_id):
     if 'user_id' not in session:
@@ -201,7 +198,7 @@ def book_property(property_id):
     flash(f'Booking confirmed! Total: €{total_price}')
     return redirect(url_for('dashboard'))
 
-# --- NEW: ADD PROPERTY ROUTE (Data Administration) ---
+# ADD PROPERTY ROUTE (Data Administration)
 @app.route('/add_property', methods=['GET', 'POST'])
 def add_property():
     # SECURITY CHECK: Only owners can access this page
@@ -236,7 +233,7 @@ def add_property():
             
     return render_template('add_property.html')
 
-# --- NEW: EDIT PROPERTY ROUTE (U in CRUD) ---
+# EDIT PROPERTY ROUTE (U in CRUD) 
 @app.route('/edit_property/<int:property_id>', methods=['GET', 'POST'])
 def edit_property(property_id):
     # Security Check 1: Must be an owner to even try
@@ -286,7 +283,7 @@ def edit_property(property_id):
     return render_template('edit_property.html', prop=prop)
 
 
-# --- NEW: DELETE PROPERTY ROUTE (D in CRUD) ---
+# NEW: DELETE PROPERTY ROUTE (D in CRUD) 
 @app.route('/delete_property/<int:property_id>', methods=['POST'])
 def delete_property(property_id):
     # Security Check 1: Must be an owner
