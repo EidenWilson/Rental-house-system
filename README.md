@@ -60,7 +60,7 @@ Follow these steps to set up and run the application on your local machine:
 
 ### Testing Credentials (from schema.sql)
 You can use these default accounts for initial testing:
-* **Owner:** email: `eiden@owner.com` / password: `hashed_pass_123`
-* **Renter:** email: `renter@test.com` / password: `hashed_pass_456`
+* **Owner:** email: `eiden@owner.com` / password: `123456`
+* **Renter:** email: `renter@test.com` / password: `7891011`
 
 ---
