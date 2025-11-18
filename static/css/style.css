@@ -1,0 +1,233 @@
+/* --- General & Layout --- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* --- Navbar --- */
+.navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+.nav-links a {
+    color: #555;
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-weight: 500;
+}
+.nav-links a:hover {
+    color: #007bff;
+}
+
+/* --- Hero (Search) Section --- */
+.hero-section {
+    background-color: #343a40;
+    color: white;
+    padding: 3rem 1rem;
+    text-align: center;
+    border-radius: 8px;
+    margin-top: 2rem;
+}
+.search-form input[type="text"] {
+    padding: 0.75rem;
+    font-size: 1rem;
+    width: 300px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+}
+.search-form button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+/* --- Property List --- */
+.section-title {
+    margin-top: 2.5rem;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.property-list {
+    display: grid;
+    /* This creates a 3-column grid */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+/* --- Property Card --- */
+.property-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    overflow: hidden; /* Ensures image corners are rounded */
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.property-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.property-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Prevents image stretching */
+}
+.card-content {
+    padding: 1rem;
+}
+.card-content h2 {
+    margin-top: 0;
+    font-size: 1.25rem;
+}
+.card-content .price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #007bff;
+    margin: 0.5rem 0;
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 0.6rem 1rem;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: 500;
+}
+.btn:hover {
+    background-color: #0056b3;
+}
+.btn-primary {
+    background-color: #28a745; /* Green for 'Book Now' */
+}
+.btn-primary:hover {
+    background-color: #218838;
+}
+
+
+/* --- Property Detail Page --- */
+.property-detail-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+}
+.property-detail-image img {
+    width: 100%;
+    border-radius: 8px;
+}
+.property-detail-info h1 {
+    margin-top: 0;
+}
+.property-detail-info .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #007bff;
+}
+.property-detail-info .description {
+    line-height: 1.6;
+}
+
+/* --- Footer --- */
+.footer {
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 3rem;
+    background-color: #343a40;
+    color: #f8f9fa;
+}
+
+/* Responsive (for smaller screens) */
+@media (max-width: 900px) {
+    .property-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 600px) {
+    .property-list {
+        grid-template-columns: 1fr;
+    }
+    .property-detail-layout {
+        grid-template-columns: 1fr;
+    }
+}
+/* --- Forms --- */
+.form-container {
+    max-width: 400px;
+    margin: 3rem auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.form-container h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+.form-group {
+    margin-bottom: 1rem;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #555;
+}
+.form-group input, 
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box; /* Ensures padding doesn't break layout */
+}
+.form-footer {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    text-align: center;
+}

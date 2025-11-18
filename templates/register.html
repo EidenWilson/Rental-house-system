@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Create an Account</h2>
+    <form method="POST" action="{{ url_for('register') }}">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" placeholder="Choose a username" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" name="email" placeholder="name@example.com" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="Create a password" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="user_type">I want to:</label>
+            <select name="user_type">
+                <option value="renter">Rent a place</option>
+                <option value="owner">List my property</option>
+            </select>
+        </div>
+        
+        <button type="submit" class="btn">Register</button>
+    </form>
+    <p class="form-footer">Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+</div>
+{% endblock %}

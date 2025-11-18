@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <div class="property-detail-layout">
+    <div class="property-detail-image">
+      <img src="{{ prop['image_url'] }}" alt="{{ prop['title'] }}">
+    </div>
+    
+<div class="property-detail-info">
+      <h1>{{ prop['title'] }}</h1>
+      <p class="price">€{{ prop['price_per_night'] }} / night</p>
+      
+      <p><strong>City:</strong> {{ prop['city'] }}</p>
+      <p><strong>Address:</strong> {{ prop['address'] | default('Not provided') }}</p>
+      <p><strong>Bedrooms:</strong> {{ prop['num_bedrooms'] }}</p>
+      
+      <p class="description">
+        {{ prop['description'] | default('No description available.') }}
+      </p>
+      
+      <div class="booking-box" style="background: #f1f1f1; padding: 1.5rem; border-radius: 8px; margin-top: 2rem;">
+        <h3>Book this place</h3>
+        
+        {% if session['user_id'] %}
+          <form action="{{ url_for('book_property', property_id=prop['property_id']) }}" method="POST">
+            <div style="margin-bottom: 1rem;">
+              <label>Check-in:</label>
+              <input type="date" name="start_date" required style="width: 100%; padding: 0.5rem;">
+            </div>
+            <div style="margin-bottom: 1rem;">
+              <label>Check-out:</label>
+              <input type="date" name="end_date" required style="width: 100%; padding: 0.5rem;">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Confirm Booking</button>
+          </form>
+        {% else %}
+          <p>Please <a href="{{ url_for('login') }}">login</a> to book this property.</p>
+        {% endif %}
+      </div>
+
+    </div>

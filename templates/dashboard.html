@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h1>My Dashboard</h1>
+  <p>Welcome back, {{ session['username'] }}!</p>
+  
+  {% if user_type == 'owner' %}
+    
+    <div style="background: #e6f7ff; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; border: 1px solid #cceeff;">
+      <h3>📊 Revenue Summary</h3>
+      <p style="font-size: 1.5rem; color: #007bff; font-weight: bold;">
+        Total Revenue Earned: €{{ total_revenue | currency }}
+      </p>
+    </div>
+
+    <h2 style="margin-top: 2rem;">My Property Listings</h2>
+    <a href="{{ url_for('add_property') }}" class="btn btn-primary" style="margin-bottom: 1rem;">+ Add New Property</a>
+
+    {% if owner_listings %}
+      <div class="property-list" style="grid-template-columns: repeat(2, 1fr);">
+        {% for listing in owner_listings %}
+          <div class="property-card">
+            <img class="property-image" src="{{ listing['image_url'] }}" alt="{{ listing['title'] }}">
+            <div class="card-content">
+              <h3>{{ listing['title'] }}</h3>
+              <p><strong>City:</strong> {{ listing['city'] }}</p>
+              <p class="price">€{{ listing['price_per_night'] | currency }} / night</p>
+
+              <a href="{{ url_for('edit_property', property_id=listing['property_id']) }}" class="btn" style="background: orange;">Edit</a>
+              <form method="POST" action="{{ url_for('delete_property', property_id=listing['property_id']) }}" style="display: inline;">
+                <button type="submit" class="btn" style="background: red; border: none; cursor: pointer;">Delete</button>
+              </form>
+              
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>You currently have no properties listed. Click "Add New Property" to get started!</p>
+    {% endif %}
+
+    <hr style="margin: 3rem 0;">
+  {% endif %}
+
+  <h2 style="margin-top: 2rem;">My Bookings</h2>
+  
+  {% if bookings %}
+    <div class="property-list" style="grid-template-columns: repeat(3, 1fr);">
+      {% for booking in bookings %}
+        <div class="property-card" style="box-shadow: none;">
+          <div class="card-content">
+            <h3>{{ booking['title'] }}</h3>
+            <p><strong>Dates:</strong> {{ booking['start_date'] | dateformat }} to {{ booking['end_date'] | dateformat }}</p>
+            <p><strong>Total Price:</strong> €{{ booking['total_price'] | currency }}</p>
+            <p><strong>Status:</strong> <span style="color: green;">{{ booking['status'] }}</span></p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>You haven't booked any trips yet.</p>
+    <a href="/" class="btn">Find a place</a>
+  {% endif %}
+
+{% endblock %}

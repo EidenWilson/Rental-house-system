@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>List a New Property</h2>
+    <p>Use this form to add your listing to the database.</p>
+    <hr>
+    
+    <form method="POST" action="{{ url_for('add_property') }}">
+        
+        <div class="form-group">
+            <label for="title">Listing Title</label>
+            <input type="text" name="title" placeholder="e.g., Spacious Loft in Berlin" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" name="city" placeholder="e.g., Munich" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="price_per_night">Price (€ / Night)</label>
+            <input type="number" step="0.01" name="price_per_night" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="num_bedrooms">Number of Bedrooms</label>
+            <input type="number" name="num_bedrooms" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="image_url">Image URL</label>
+            <input type="url" name="image_url" placeholder="https://images.unsplash.com/..." required>
+        </div>
+        
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea name="description" rows="5" placeholder="Detailed description of the property..."></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Add Listing</button>
+    </form>
+
+</div>
+{% endblock %}

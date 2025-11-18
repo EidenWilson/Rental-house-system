@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rental House System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body>
+
+    <nav class="navbar">
+      <div class="container">
+        <a class="navbar-brand" href="/">🏠 RentalHome</a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          
+          {% if session['username'] %}
+            <span style="color: #777; margin-right: 1rem;">Hello, {{ session['username'] }}</span>
+            <a href="{{ url_for('dashboard') }}">My Dashboard</a>
+            
+            {% if session['user_type'] == 'owner' %}
+                <a href="{{ url_for('add_property') }}">List a Property</a>
+            {% endif %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+          {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Register</a>
+          {% endif %}
+          
+        </div>
+      </div>
+    </nav>
+
+    <main class="container">
+      
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div style="background: #d4edda; color: #155724; padding: 1rem; margin-bottom: 1rem; border-radius: 4px; border: 1px solid #c3e6cb;">
+            {% for message in messages %}
+              <p style="margin: 0;">{{ message }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+      <p>&copy; 2025 Rental House System. Project by Eiden Wilson.</p>
+    </footer>
+
+  </body>
+</html>

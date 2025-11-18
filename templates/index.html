@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <div class="hero-section">
+    <h1>Find Your Next Home</h1>
+    <form class="search-form" method="GET" action="/">
+      <input type="text" name="city" placeholder="Search by city...">
+      <button type="submit">Search</button>
+    </form>
+  </div>
+  
+  <h2 class="section-title">Available Properties</h2>
+
+  <div class="property-list">
+    {% for prop in properties %}
+      <div class="property-card">
+        
+        <img class="property-image" src="{{ prop['image_url'] }}" alt="{{ prop['title'] }}">
+        
+        <div class="card-content">
+          <h2>{{ prop['title'] }}</h2>
+          <p><strong>City:</strong> {{ prop['city'] }}</p>
+          <p><strong>Bedrooms:</strong> {{ prop['num_bedrooms'] }}</p>
+          <p class="price">€{{ prop['price_per_night'] }} / night</p>
+          
+          <a href="{{ url_for('property_page', property_id=prop['property_id']) }}" class="btn">
+            View Details
+          </a>
+        </div>
+
+      </div>
+    {% else %}
+      <p>No properties found.</p>
+    {% endfor %}
+  </div>
+
+{% endblock %}
