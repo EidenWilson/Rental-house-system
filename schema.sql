@@ -53,3 +53,12 @@ INSERT INTO Properties (owner_id, title, city, price_per_night, num_bedrooms, im
 (1, 'Rooftop Penthouse in Hamburg', 'Hamburg', 350.00, 3, 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400'),
 (1, 'Quiet Room near English Garden', 'Munich', 85.00, 1, 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=400'), 
 (1, 'Artistic Loft in Cologne', 'Cologne', 160.00, 2, 'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400');
+
+-- Historical bookings so the owner dashboard has revenue to show on load
+INSERT INTO Bookings (renter_id, property_id, start_date, end_date, total_price, status) VALUES
+(2, 1, '2026-06-01', '2026-06-05', 482.00, 'confirmed'),
+(2, 2, '2026-06-10', '2026-06-14', 800.00, 'confirmed'),
+(2, 4, '2026-07-01', '2026-07-04', 540.00, 'confirmed'),
+(2, 5, '2026-07-15', '2026-07-20', 1050.00, 'confirmed'),
+(2, 6, '2026-05-01', '2026-05-03', 700.00, 'confirmed'),
+(2, 2, '2026-08-01', '2026-08-03', 400.00, 'confirmed');
