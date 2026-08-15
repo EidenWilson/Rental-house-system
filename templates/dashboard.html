@@ -11,6 +11,25 @@
       <p style="font-size: 1.5rem; color: #007bff; font-weight: bold;">
         Total Revenue Earned: €{{ total_revenue | currency }}
       </p>
+
+      {% if revenue_by_property %}
+        <table style="width: 100%; border-collapse: collapse; margin-top: 0.5rem;">
+          <thead>
+            <tr>
+              <th style="text-align: left; border-bottom: 1px solid #cceeff; padding: 0.25rem 0;">Property</th>
+              <th style="text-align: right; border-bottom: 1px solid #cceeff; padding: 0.25rem 0;">Revenue</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for title, revenue in revenue_by_property %}
+              <tr>
+                <td style="padding: 0.25rem 0;">{{ title }}</td>
+                <td style="text-align: right; padding: 0.25rem 0;">€{{ revenue | currency }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endif %}
     </div>
 
     <h2 style="margin-top: 2rem;">My Property Listings</h2>

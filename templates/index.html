@@ -4,7 +4,10 @@
   <div class="hero-section">
     <h1>Find Your Next Home</h1>
     <form class="search-form" method="GET" action="/">
-      <input type="text" name="city" placeholder="Search by city...">
+      <input type="text" name="city" placeholder="City..." value="{{ filters.get('city', '') }}">
+      <input type="number" name="min_price" placeholder="Min €/night" min="0" step="1" value="{{ filters.get('min_price', '') }}">
+      <input type="number" name="max_price" placeholder="Max €/night" min="0" step="1" value="{{ filters.get('max_price', '') }}">
+      <input type="number" name="bedrooms" placeholder="Bedrooms" min="0" step="1" value="{{ filters.get('bedrooms', '') }}">
       <button type="submit">Search</button>
     </form>
   </div>
